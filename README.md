@@ -22,17 +22,17 @@
 
 ## items テーブル
 
-| Column        | Type  		 | Options 	           |
-| :------------ | :------------ | :--------------- |
-| name          | string  		  | null: false      |
-| info          | text   		    | null: false      |
-| category_id   | integer       | null: false      |
-| status_id     | integer       | null: false      |
-| shipping_id   | integer       | null: false      |
-| shipfrom_id   | integer       | null: false      |
-| dateship_id   | integer		    | null: false      |
-| price         | integer       | null: false      |
-| user          | references    | foreign_key: true |
+| Column         | Type  		 | Options 	           |
+| :------------  | :------------ | :--------------- |
+| name           | string  		  | null: false      |
+| info           | text   		    | null: false      |
+| category_id    | integer       | null: false      |
+| status_id      | integer       | null: false      |
+| shippingfee_id | integer       | null: false      |
+| shipplace_id    | integer       | null: false      |
+| dateship_id    | integer		    | null: false      |
+| price          | integer       | null: false      |
+| user           | references    | foreign_key: true |
 
 ### Association
 
@@ -54,17 +54,16 @@
 
 ## addresses テーブル
 
-| Column         | Type  		 | Options 	         |
+| Column         | Type  	    	| Options           |
 | :------------- | :----------- | :---------------- |
-| zip_code       | string  		 | null: false       |
-| ship_to        | integer      | null: false       |
+| zip_code       | string  		  | null: false       |
+| shipplace_id   | integer      | null: false       |
 | city           | string       | null: false       |
-| address        | string       | null: false       |
+| blocknum       | string       | null: false       |
 | building       | string       | null: false       |
 | tel            | string       | null: false       |
+| order          | references   | foreign_key: true |
 
 ### Association
 
 - belongs_to :order
-
-
