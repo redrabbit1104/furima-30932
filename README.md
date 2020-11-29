@@ -4,15 +4,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options 	   |
-| :-------------- | :----- | :----------- |
-| nickname        | string | null: false  |
-| email           | string | null: false  |
-| last_name       | string | null: false  |
-| first_name      | string | null: false  |
-| last_name_kana  | string | null: false  |
-| first_name_kana | string | null: false  |
-| birthday		   | date  | null: false  |
+| Column             | Type   | Options 	               |
+| :--------------    | :----- | :----------------------- |
+| nickname           | string | null: false              |
+| encrypted_password | string | null: false              |
+| email              | string | null: false,unique:true  |
+| last_name          | string | null: false              |
+| first_name         | string | null: false              |
+| last_name_kana     | string | null: false              |
+| first_name_kana    | string | null: false              |
+| birthday		       | date   | null: false              |
 
 ### Association
 
@@ -21,16 +22,15 @@
 
 ## items テーブル
 
-| Column        | Type  		 | Options 	        |
+| Column        | Type  		 | Options 	           |
 | :------------ | :------------ | :--------------- |
-| image         | text 		     | null: false      |
-| item_name     | string  		 | null: false      |
-| item_info     | text   		 | null: false      |
-| item_category | string        | null: false      |
-| item_status   | string        | null: false      |
-| shipping_fee  | string        | null: false      |
-| ship_from     | string        | null: false      |
-| date_to_ship  | integer		 | null: false      |
+| name          | string  		  | null: false      |
+| info          | text   		    | null: false      |
+| category_id   | integer       | null: false      |
+| status_id     | integer       | null: false      |
+| shipping_id   | integer       | null: false      |
+| shipfrom_id   | integer       | null: false      |
+| dateship_id   | integer		    | null: false      |
 | price         | integer       | null: false      |
 | user          | references    | foreign_key: true |
 
