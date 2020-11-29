@@ -32,7 +32,7 @@
 | ship_from     | string        | null: false      |
 | date_to_ship  | integer		 | null: false      |
 | price         | integer       | null: false      |
-| user_id	    | references    | foreign_key: true |
+| user          | references    | foreign_key: true |
 
 ### Association
 
@@ -43,8 +43,8 @@
 
 | Column         | Type  		    | Options 	        |
 | :------------- | :----------- | :---------------- |
-| user_id        | references   | foreign_key: true |
-| item_id        | references   | foreign_key: true |
+| user           | references   | foreign_key: true |
+| item           | references   | foreign_key: true |
 
 ### Association
 
