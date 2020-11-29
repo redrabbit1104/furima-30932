@@ -32,40 +32,24 @@
 | ship_from     | string        | null: false      |
 | date_to_ship  | integer		 | null: false      |
 | price         | integer       | null: false      |
-| user_id	    | references    | foregin_key: true |
+| user_id	    | references    | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- has_one :order
 
 ## orders テーブル
 
-| Column         | Type  		 | Options 	         |
+| Column         | Type  		    | Options 	        |
 | :------------- | :----------- | :---------------- |
-| card_number    | text  		 | null: false       |
-| card_exp_month | integer      | null: false       |
-| card_exp_year  | integer      | null: false       |
-| card_cvc       | integer      | null: false       |
-| user_id        | references   | foregin_key: true |
+| user_id        | references   | foreign_key: true |
+| item_id        | references   | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :address
-
-## orders テーブル
-
-| Column         | Type  		 | Options 	         |
-| :------------- | :----------- | :---------------- |
-| card_number    | text  		 | null: false       |
-| card_exp_month | integer      | null: false       |
-| card_exp_year  | integer      | null: false       |
-| card_cvc       | integer      | null: false       |
-| user_id        | references   | foregin_key: true |
-
-### Association
-
-- belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## addresses テーブル
@@ -77,7 +61,7 @@
 | city           | string       | null: false       |
 | address        | string       | null: false       |
 | building       | string       | null: false       |
-| tel            | integer      | null: false       |
+| tel            | string       | null: false       |
 
 ### Association
 
