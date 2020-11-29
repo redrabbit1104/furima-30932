@@ -60,7 +60,7 @@
 | shipplace_id   | integer      | null: false       |
 | city           | string       | null: false       |
 | blocknum       | string       | null: false       |
-| building       | string       | null: false       |
+| building       | string       |                   |
 | tel            | string       | null: false       |
 | order          | references   | foreign_key: true |
 
