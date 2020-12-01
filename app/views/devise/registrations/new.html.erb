@@ -1,8 +1,6 @@
 <%= render "shared/second-header"%>
 
-<%# 「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
-<%# //「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <div class='form-wrap'>
   <div class='form-header'> 
     <h1 class='form-header-text'>
@@ -10,9 +8,7 @@
     </h1>
   </div>
 
-  <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-  <%# render 'shared/error_messages', model: f.object %>
-  <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+  <%= render 'shared/error_messages', model: f.object %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -21,6 +17,19 @@
     </div>
     <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) furima太郎", maxlength:"40" %>
   </div>
+
+  <%# 🌟テスト🌟　⏬個別の項目に対するエラーメッセージを表示する方法%>
+  <%# <% if @user.errors.include?(:nickname) %>     
+   <%# <div class="form-group"> %>
+    <%# <div class='form-text-wrap'> %>
+  <%# <ul> %>
+       <%# <li class='error-message'><%= @user.errors.full_messages_for(:nickname).first %>
+       <%# </li>    %>
+       <%# </ul> %>
+       <%# </div> %>
+       <%# </div> %>
+     <%# <% end %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">メールアドレス</label>

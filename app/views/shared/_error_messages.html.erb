@@ -5,5 +5,16 @@
     <li class='error-message'><%= message %></li>
     <% end %>
   </ul>
+
+  <%# 🌟テスト🌟⏬nicknameだけエラーの場合、nicknameだけエラーメッセージ表示など色々%>
+  <%# <% if model.errors.include?(:nickname) %>
+       <%# <p style="color: red;"><%= model.errors.full_messages_for(:nickname).first %> 
+  <%# <% end %>  
+
+  <%# <ul>
+    <%= model.errors.full_messages_for(:nickname)%>
+  <%# </ul> %>
+
+
 </div>
 <% end %>
