@@ -3,10 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
-  validates :nickname, :birthday, :email, presence: true
-  
+  validates :nickname, :birthday, presence: true
+  validates :email, presence: true,uniqueness: true   #モデルにもemailカラムに対する一意性制約を掛ける。これをしないと同じemailを登録した場合、エラーが出てしまう。
+  # validates :email, presence: true,uniqueness: { case_sensitive: true } 
+
   with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i } do #英数字混合のパスワードを要求
-    validates :password, length: { minimum: 6 } #パスワードを6文字以上に制限
+    validates :password, confirmation: true,length: { minimum: 6 } #パスワードを6文字以上に制限、confirmation: trueにすることによってパスワードと再確認パスワードが一致しないとエラーメッセージが出せる。
     validates :password_confirmation, length: { minimum: 6 } #パスワードを6文字以上に制限
   end
 
