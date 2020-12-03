@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
   validates :nickname, :birthday, presence: true
-  validates :email, presence: true, uniqueness: true # モデルにもemailカラムに対する一意性制約を掛ける。これをしないと同じemailを登録した場合、エラーが出てしまう。
+
+  ValidEmail = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i      #emailのvalidationフォーマットを正規表現で指定し、Validemailという定数に格納
+  validates :email, presence: true, format: { with: ValidEmail }, uniqueness: true  #validatesにValidEmailで定義した制約をフォーマットに適用する
+
+  # validates :email, presence: true, uniqueness: true # モデルにもemailカラムに対する一意性制約を掛ける。これをしないと同じemailを登録した場合、エラーが出てしまう。
   # validates :email, presence: true,uniqueness: { case_sensitive: true }
 
   with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i } do # 英数字混合のパスワードを要求
@@ -12,7 +16,7 @@ class User < ApplicationRecord
     validates :password_confirmation, length: { minimum: 6 } # パスワードを6文字以上に制限
   end
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥a-zA-Z]+\z/ } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
     validates :last_name
     validates :first_name
   end
