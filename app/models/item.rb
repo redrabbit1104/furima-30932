@@ -3,5 +3,5 @@ class Item < ApplicationRecord
   has_one :order
   has_one_attached :image
 
-  validates :name, :info, :image, presence: true
+   validates :name, :info, :image, :price,presence: true
 end
