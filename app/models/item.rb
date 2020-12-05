@@ -3,7 +3,9 @@ class Item < ApplicationRecord
   has_one :order
   has_one_attached :image
 
-  validates :name, :info, :image, :price,presence: true
+  validates :name, :info, :image, presence: true
+  validates :price, presence: true, 
+             numericality: { only_integer: true, greater_than: 299, less_than: 10000000} #整数のみ、300以上9999999以下を指定
 
   #ActiveHashにより生成されたカラムのassociations及びvalidation
 
