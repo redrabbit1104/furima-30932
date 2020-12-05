@@ -11,6 +11,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :dateship_id, null: false
 
       t.integer :price, null: false
+      t.integer :tax
+      t.integer :profit
       t.references :user, foreign_key: true
       t.timestamps
     end
