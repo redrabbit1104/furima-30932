@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable
   validates :nickname, :birthday, presence: true
 
-  ValidEmail = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i      #emailのvalidationフォーマットを正規表現で指定し、Validemailという定数に格納
-  validates :email, presence: true, format: { with: ValidEmail }, uniqueness: true  #validatesにValidEmailで定義した制約をフォーマットに適用する
+  ValidEmail = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze # emailのvalidationフォーマットを正規表現で指定し、Validemailという定数に格納
+  validates :email, presence: true, format: { with: ValidEmail }, uniqueness: true # validatesにValidEmailで定義した制約をフォーマットに適用する
 
   # validates :email, presence: true, uniqueness: true # モデルにもemailカラムに対する一意性制約を掛ける。これをしないと同じemailを登録した場合、エラーが出てしまう。
   # validates :email, presence: true,uniqueness: { case_sensitive: true }
