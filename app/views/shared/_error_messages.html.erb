@@ -2,9 +2,9 @@
 <div class="error-alert">
   <ul>
     <% model.errors.full_messages.each do |message| %>
-    <li class='error-message'><%= message %></li>
-    <% end %>
-  </ul>
+     <li class='error-message'><%= message %></li>
+    <% end %> 
+   </ul>  
 
   <%# 🌟テスト🌟⏬nicknameだけエラーの場合、nicknameだけエラーメッセージ表示など色々%>
   <%# <% if model.errors.include?(:nickname) %>
@@ -17,4 +17,5 @@
 
 
 </div>
-<% end %>
+<% end %> 
+
