@@ -17,8 +17,6 @@ class Item < ApplicationRecord
   belongs_to :shipplace
   belongs_to :dateship
 
-  # validates :category_id, :status_id, :shippingfee_id, :shipplace_id, :dateship_id, numericality: { other_than: 1 }
-
   with_options numericality: { other_than: 1} do
     validates :category_id
     validates :status_id
