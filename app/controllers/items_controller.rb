@@ -3,9 +3,8 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    binding.pry
     @items = Item.order("created_at DESC")
-    @orders = Order.all
+    @orders = Order.all    #Orderテーブルの全ての値を取得
   end
 
   def new
