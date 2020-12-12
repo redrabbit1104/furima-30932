@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @orders = Order.all    #Orderテーブルの全ての値を取得
   end
 
   def edit
