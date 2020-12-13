@@ -5,8 +5,8 @@ class Item < ApplicationRecord
 
   validates :name, :info, :image, presence: true
   validates :price, presence: true
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: "Price is not a number" }
-  validates :price, numericality: { only_integer: true,greater_than: 299, less_than: 10_000_000} # 整数のみ、300以上9999999以下を指定
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Price is not a number' }
+  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 } # 整数のみ、300以上9999999以下を指定
 
   # ActiveHashにより生成されたカラムのassociations及びvalidation
 
@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   belongs_to :shipplace
   belongs_to :dateship
 
-  with_options numericality: { other_than: 1} do
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :status_id
     validates :shippingfee_id

@@ -26,9 +26,9 @@ RSpec.describe ItemOrder, type: :model do
       end
 
       it '郵便番号はハイフン(-)がないと保存できない' do
-        @item_order.zip_code = "1234567"
+        @item_order.zip_code = '1234567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Zip code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
       end
 
       it '都道府県がないと保存できない' do
@@ -62,12 +62,10 @@ RSpec.describe ItemOrder, type: :model do
       end
 
       it '電話番号はハイフン(-)無しでないと保存できない' do
-        @item_order.tel = "03-203-4324"
+        @item_order.tel = '03-203-4324'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Tel is invalid")
+        expect(@item_order.errors.full_messages).to include('Tel is invalid')
       end
-
     end
   end
-  
 end

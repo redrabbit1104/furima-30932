@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
       it '1以外を選ばないとカテゴリーは保存できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it '1以外を選ばないと商品状態は保存できない' do
@@ -70,27 +70,26 @@ RSpec.describe Item, type: :model do
       it '販売価格が299円以下では保存できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 299")
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
 
       it '販売価格が10,000,000円以上では保存できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
+        expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
 
       it '全角数字では販売価格は保存できない' do
         @item.price = '１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '半角文字列では販売価格は保存できない' do
         @item.price = 'adfd'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
-
     end
   end
 end
