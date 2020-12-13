@@ -1,6 +1,7 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :zip_code, :city, :blocknum, :building, :tel, :shipplace_id, :user_id, :item_id
+  attr_accessor :zip_code, :city, :blocknum, :building, :tel, :shipplace_id, :user_id, :item_id, :token,
+                :number, :exp_month, :exp_year, :cvc
   #↑この記述によって各属性の値を取得できる
 
   with_options presence: true do
@@ -9,6 +10,7 @@ class ItemOrder
     validates :blocknum
     validates :building
     validates :tel
+    validates :token
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank"  } do
@@ -17,7 +19,7 @@ class ItemOrder
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create(zip_code: zip_code, city: city,  blocknum: blocknum,building: building, 
+    Address.create(zip_code: zip_code, city: city,  blocknum: blocknum, building: building, 
                    tel: tel, shipplace_id: shipplace_id, order_id: order.id)
                    #↑attr_accessorで取得した値を指定する。ex):zip_codeには値zip_codeを指定。
                    #attr_accessorで定義していないこれから保存処理する新しい属性(order_id)に関しては変数に代入し利用する。order_id: order.id
