@@ -26,11 +26,12 @@
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? && current_user.id == @item.user_id && @item.order.nil? %> <%# ログイン状態の出品者でも、売却済みの商品に対しては「編集・削除ボタン」が表示されない %>
+    <% if user_signed_in? && @item.order.nil? %> <%# ログイン状態の出品者で売れてない商品であれば、編集、削除、購入画面が見える %>
+       <% if current_user.id == @item.user_id %>  <%# 尚且つ、現在のユーザーが出品者であれば、編集、削除ができる%>
     <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@item.id) , method: :delete, class:'item-destroy' %>
-    <% elsif user_signed_in? && @item.order.nil? %>
+    <% else %>  <%# 現在のユーザーが出品者でない場合は購入ボタンが表示される %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to '購入画面に進む', item_transactions_path(@item.id),method: :get,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>

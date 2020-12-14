@@ -10,6 +10,8 @@ class ItemOrder
     validates :blocknum
     validates :tel, format: { with: /\A^\d[0-9]{0,10}$\z/ } # 電話番号は-なしの0~9の数字1桁から11桁以内でないと入力できないようにする
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do

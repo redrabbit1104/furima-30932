@@ -7,5 +7,7 @@ FactoryBot.define do
     blocknum { Faker::Lorem.words }
     building { Faker::Lorem.words }
     tel { Faker::Number.between(from: 1, to: 11) }
+    user_id { Faker::Number.between(from: 1, to: 99) }
+    item_id { Faker::Number.between(from: 1, to: 99) }
   end
 end

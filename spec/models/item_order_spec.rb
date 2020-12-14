@@ -44,6 +44,12 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Shipplace can't be blank")
       end
 
+      it '都道府県の選択が「--」では保存できない' do
+        @item_order.shipplace_id = 1
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Shipplace can't be blank")
+      end
+
       it '市区町村がないと保存できない' do
         @item_order.city = nil
         @item_order.valid?
