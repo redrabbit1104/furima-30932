@@ -10,6 +10,13 @@ RSpec.describe ItemOrder, type: :model do
       it 'token、郵便番号、都道府県、市区町村、番地、建物名、電話番号があれば保存できる' do
         expect(@item_order).to be_valid
       end
+
+      it '建物名が空でも保存できる' do
+        @item_order.building = nil
+        @item_order.valid?
+        expect(@item_order).to be_valid
+      end
+
     end
 
     context 'addressが保存できない場合' do
@@ -49,12 +56,6 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Blocknum can't be blank")
       end
 
-      it '建物名がないと保存できない' do
-        @item_order.building = nil
-        @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Building can't be blank")
-      end
-
       it '電話番号がないと保存できない' do
         @item_order.tel = nil
         @item_order.valid?
@@ -66,6 +67,13 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include('Tel is invalid')
       end
+
+      it '電話番号は12桁以上では保存されない' do
+        @item_order.tel = '123456789012'
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include('Tel is invalid')
+      end
+
     end
   end
 end

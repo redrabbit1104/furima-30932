@@ -1,8 +1,8 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :find_item, only: [:index, :create]
 
-  def index
-    @item = Item.find(params[:item_id])
+  def index  
     @item_order = ItemOrder.new
     redirect_to root_path if current_user.id == @item.user_id  # 自身が出品した商品ページに直接接続しようとするとトップページに移動する
 
@@ -13,7 +13,6 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @item_order = ItemOrder.new(order_params)
     if @item_order.valid?
       pay_item
@@ -39,6 +38,9 @@ class TransactionsController < ApplicationController
       currency: 'jpy'
     )
   end
-end
 
-# params.require(:item_order).permit(:zip_code, :shipplace_id, :city, :blocknum, :building, :tel, :number, :exp_month, :exp_year, :cvc).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  def find_item
+    @item = Item.find(params[:item_id])
+  end
+
+end
