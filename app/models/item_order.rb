@@ -8,7 +8,6 @@ class ItemOrder
     validates :zip_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :blocknum
-    validates :building
     validates :tel, format: { with: /\A^\d[0-9]{0,10}$\z/ } # 電話番号は-なしの0~9の数字1桁から11桁以内でないと入力できないようにする
     validates :token
   end

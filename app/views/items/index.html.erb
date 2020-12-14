@@ -135,12 +135,10 @@
          <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
-           <% @orders.each do |order| %>  <%# 全てのordersテーブルから各orderに対する処理を行う%>
-          <% if item.id == order.item_id %> 
+           <% if item.order.present? %> 
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-           <% end %>
            <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
          

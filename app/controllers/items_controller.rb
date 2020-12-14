@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order('created_at DESC')
-    @orders = Order.all    # Orderテーブルの全ての値を取得
   end
 
   def new
@@ -28,7 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @orders = Order.all    # Orderテーブルの全ての値を取得
   end
 
   def edit
