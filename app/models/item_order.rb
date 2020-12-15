@@ -1,6 +1,6 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :zip_code, :city, :blocknum, :building, :tel, :shipplace_id, :user_id, :item_id, :token, :number, :exp_month, :exp_year, :cvc
+  attr_accessor :zip_code, :city, :blocknum, :building, :tel, :shipplace_id, :user_id, :item_id, :token
 
   # ↑この記述によって各属性の値を取得できる
 
@@ -13,6 +13,7 @@ class ItemOrder
     validates :user_id
     validates :item_id
   end
+
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :shipplace_id

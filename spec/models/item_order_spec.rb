@@ -13,7 +13,6 @@ RSpec.describe ItemOrder, type: :model do
 
       it '建物名が空でも保存できる' do
         @item_order.building = nil
-        @item_order.valid?
         expect(@item_order).to be_valid
       end
 
@@ -66,6 +65,18 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.tel = nil
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Tel can't be blank")
+      end
+
+      it 'user_idがないと保存できない' do
+        @item_order.user_id = nil
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idがないと保存できない' do
+        @item_order.item_id = nil
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Item can't be blank")
       end
 
       it '電話番号はハイフン(-)無しでないと保存できない' do
