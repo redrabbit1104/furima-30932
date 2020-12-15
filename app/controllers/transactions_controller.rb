@@ -4,13 +4,9 @@ class TransactionsController < ApplicationController
 
   def index  
     @item_order = ItemOrder.new
-    redirect_to root_path if current_user.id == @item.user_id  # 自身が出品した商品ページに直接接続しようとするとトップページに移動する
-
-    @orders = Order.all # soldoutした商品に直接url入力して購入手続きしようとするとトップページに遷移する
-    @orders.each do |order|
-      redirect_to root_path if @item.id == order.item_id
-    end
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
+
 
   def create
     @item_order = ItemOrder.new(order_params)
