@@ -23,13 +23,13 @@ class TransactionsController < ApplicationController
 
   #:order_idはaddressテーブルとorderテーブルが紐づけられているので、わざわざパラメータとして送る必要はない。
   def order_params
-    params.require(:item_order).permit(:zip_code, :shipplace_id, :city, :blocknum, :building, :tel, :number, :exp_month, :exp_year, :cvc).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:item_order).permit(:zip_code, :shipplace_id, :city, :blocknum, :building, :tel).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-      amount: Item.find(params[:item_id]).price,
+      amount: @item.price,
       card: order_params[:token],
       currency: 'jpy'
     )
